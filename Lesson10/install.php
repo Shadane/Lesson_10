@@ -28,6 +28,7 @@ require_once $project_root.'/dbsimple+firephp.inc.php';
     $config_arr = config();
     $ads_db = dbconnect($config_arr);
     
+    
 //обработчик файла .sql
 //нагло стырил с stack overflow, очень понравилось как сделано)
 
@@ -68,7 +69,7 @@ copy('./L10.tpl', './smarty/templates/L10.tpl') or die('не удалось пе
 
 
 if (is_file('./L10.php')){
-exit ('<div style="width: 300px;align= right"><a href=/L10.php>Success!lesson 10 homework</a></div>');
+exit ('<div style="width: 300px;align= right"><a href=./L10.php>Success!lesson 10 homework</a></div>');
 
 }
 }

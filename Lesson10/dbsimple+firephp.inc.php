@@ -9,7 +9,7 @@ function config(){
 
 function dbconnect($config_arr)
 {
-    $ads_db = DbSimple_Generic::connect("mysqli://".$config_arr['user_name'].":".$config_arr['password']."@".$config_arr['server_name']."/".$config_arr['database']."");
+    $ads_db = DBSimple_Generic::connect("mysql://".$config_arr['user_name'].":".$config_arr['password']."@".$config_arr['server_name']."/".$config_arr['database']."");
     if (!is_object($ads_db)){ die('CONNECTION PROBLEM'); }
     $ads_db->setErrorHandler('databaseErrorHandler');
     //логирование
@@ -22,12 +22,15 @@ function databaseErrorHandler($message, $info)
     // Если использовалась @, ничего не делать.
     if (!error_reporting()) return;
     // Выводим подробную информацию об ошибке.
-    $firephp=$GLOBALS['firephp'];
-    $firephp->group('SQL ERROR:['.$message.'<br>');
-    $firephp->error($info);
-    $firephp->groupend();
+    echo "SQL Error: $message<br><pre>"; 
+    print_r($info);
+    echo "</pre>";
+//    $firephp=$GLOBALS['firephp']; //эта конструкция выдает ошибку хедеров на денвере, поэтому закомментил и вернул старое, на вагранте работает нормально.
+//    $firephp->group('SQL ERROR:['.$message.'<br>');
+//    $firephp->error($info);
+//    $firephp->groupend();
 
-    exit('OOPS! There is an error here! <a href="./l10.php">Перейти на главную</a>');
+    exit('OOPS! There is an error here! <a href="./install.php">Перейти на install</a>');
 }
 
 function myLogger($db, $sql, $caller)
