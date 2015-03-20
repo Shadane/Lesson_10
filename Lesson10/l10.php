@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 ini_set('display_errors', 1);
-header('Content-type: text/html; charset=utf8');
+header('Content-type: text/html; charset=utf-8');
 
 // Подключаем библиотеки.
 $project_root=  dirname(__FILE__);
@@ -11,11 +11,13 @@ require_once $project_root."/dbsimple/config.php";
 require_once $project_root."/dbsimple/DbSimple/Generic.php";
 
 require_once $project_root.'/FirePHPCore/FirePHP.class.php';
-$firephp=firephp::getInstance(true);
-$firephp->setEnabled(true);
+
 require_once $project_root.'/dbsimple+firephp.inc.php';
 
 require($project_root.'/smarty/libs/Smarty.class.php');
+
+$firephp=firephp::getInstance(true);
+$firephp->setEnabled(true);
 // Устанавливаем соединение.
 $config_arr = config();
 $ads_db = dbconnect($config_arr);
@@ -28,14 +30,13 @@ $ads_db = dbconnect($config_arr);
               $return_id = (isset($_POST['return_id']))? $_POST['return_id'] : NULL;
               adsSQLSave( $sent_entry, $return_id, $ads_db );
           }else{
-                $showform_params['notice_title_is_empty'] = 'You must fill Name, Email and Title(or choose email+name from selector) fields to proceed ';
+                $showform_params['notice_title_is_empty'] = 'Введите обязательные поля (помечены звездочкой)';
           }
    }elseif ( isset($_GET['delentry']) && is_numeric($_GET['delentry']) ) {           //delete button
              adsSQLDelete( $_GET['delentry'] ,$ads_db);
    }elseif ( isset($_GET['formreturn'] ) && is_numeric($_GET['formreturn'] )) {   //достаточно ли is_numeric для предотвращения инъекций? или нужно прогнать еще через intval? Или лучше привести тип к int?
             $showform_params = adReturn( $ads_db, $_GET['formreturn'] );
    }
-
 
 
 $smarty = new Smarty();

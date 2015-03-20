@@ -5,10 +5,6 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP DATABASE IF EXISTS `ads`;
-CREATE DATABASE `ads` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `ads`;
-
 DROP TABLE IF EXISTS `ads_authors`;
 CREATE TABLE `ads_authors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -30,7 +26,9 @@ CREATE TABLE `ads_container` (
   `description` varchar(500) NOT NULL,
   `price` varchar(9) NOT NULL,
   `author_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `author_id` (`author_id`),
+  CONSTRAINT `ads_container_ibfk_3` FOREIGN KEY (`author_id`) REFERENCES `ads_authors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -125,4 +123,4 @@ INSERT INTO `cities` (`city_id`, `city_name`) VALUES
 ('641800',	'Ордынское'),
 ('641970',	'Черепаново');
 
--- 2015-03-08 06:24:19
+-- 2015-03-20 10:57:40

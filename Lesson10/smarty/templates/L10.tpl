@@ -1,79 +1,77 @@
+<!DOCTYPE HTML>
 <HTML>
    <HEAD>
-      <TITLE>Lesson 9 MySQLi HW</TITLE>
-          <style>  
-            input.private {literal}{ margin-left:20px }{/literal}
-            div {literal}{ width: 800px;}{/literal}
-          </style>  
+      <TITLE>Lesson 10</TITLE>
+      <link type="text/css" rel="stylesheet" href="./css/style.css" />
+
    </HEAD>
+   <body>
 <form method="post">
-    <div style="margin-left:208px;margin-top:10px"> 
-        {html_radios name='private' class='private' options=$radios selected=$showform_params.private}
+    <div class="radios"> 
+        {html_radios name="private" options=$radios selected=$showform_params.private}
     </div> 
-    <div style="margin-left:60px;margin-top:10px"> 
+    <div> 
         <label>
-            Ваше имя
+            Ваше имя *
         </label>
-        <input style="margin-left:90px; width:230px" type="text" maxlength="20" value="{$showform_params.seller_name|strip|escape:'htmlall':'utf-8'}" name="seller_name">
+        <input type="text" maxlength="20" value="{$showform_params.seller_name|strip|escape:'htmlall':'utf-8'}" name="seller_name">
     </div>
-    <div style="margin-left:60px;  margin-top:10px"> 
-        <label>Электронная почта</label>
-        <input style="margin-left:27px; width:230px;" type="text" maxlength="50" value="{$showform_params.email|strip|escape:'htmlall':'utf-8'}" name="email">
+    <div> 
+        <label>Электронная почта *</label>
+        <input type="text" maxlength="50" value="{$showform_params.email|strip|escape:'htmlall':'utf-8'}" name="email">
         <div>
-            <select style="margin-left:242px; width:150px;height:15px;margin-top:-5px" title="список авторов" name="saved_email"> 
+            <LABEL>Список Авторов&nbsp;<a href="?" title="Можете оставить поля 'Имя' и 'Электронная почта' пустыми и выбрать их из существующих">?</A></LABEL>
+            <select  title="список авторов" name="saved_email"> 
                  <option value="0"></option>
                   {html_options options=$emails} 
             </select>
         </div>  
     </div>
      
-    <div style="margin-left:217px;  margin-top:10px">
-        <label> 
+    <div class="allow_mails">
             {html_checkboxes name="allow_mails" values="1" output='Я не хочу получать вопросы по объявлению по e-mail' selected=$showform_params.allow_mails  separator="<br />"}
-        </label>
     </div>
-    <div style="margin-left:60px;  margin-top:10px"> 
+    <div> 
         <label>Номер телефона</label>
-        <input style="margin-left:46px; width:230px" type="text"  value="{$showform_params.phone|strip|escape:'htmlall':'utf-8'}" name="phone">
+        <input type="text"  value="{$showform_params.phone|strip|escape:'htmlall':'utf-8'}" name="phone">
     </div>
-    <div style="margin-left:60px;  margin-top:10px"> 
+    <div> 
        <label >Город</label> 
-       <select style="margin-left:118px; width:230px;height:22px" title="Выберите Ваш город" name="location_id"> 
+       <select title="Выберите Ваш город" name="location_id"> 
             <option value="">-- Выберите город --</option>
             <option disabled="disabled">-- Города --</option>
         {html_options options=$cities selected=$showform_params.location_id}
          </select>
     </div>
-    <div style="margin-left:60px;  margin-top:10px"> 
+    <div> 
         <label for="fld_category_id" class="form-label">Категория</label> 
-            <select style="margin-left:89px; width:230px;height:22px" name="category_id">
+            <select name="category_id">
                 <option value="">-- Выберите категорию --</option>
         {html_options options=$categories selected=$showform_params.category_id}
             </select> 
     </div>
-    <div style="margin-left:60px;  margin-top:10px">
-        <label>Название объявления</label> 
-        <input style="margin-left:12px; width:230px;" type="text" maxlength="30" value="{$showform_params.title|strip|escape:'htmlall':'utf-8'}" name="title">
+    <div>
+        <label>Название объявления *</label> 
+        <input type="text" maxlength="30" value="{$showform_params.title|strip|escape:'htmlall':'utf-8'}" name="title">
     </div>
-    <div style="margin-left:60px;  margin-top:10px"> 
-        <label style="position:absolute">Описание объявления</label>
-        <textarea style="margin-left:162px; width:230px;height:70px;" maxlength="500" name="description" >{$showform_params.description|strip|escape:'htmlall':'utf-8'}</textarea>
+    <div> 
+        <label>Описание объявления</label>
+        <textarea maxlength="500" name="description" >{$showform_params.description|strip|escape:'htmlall':'utf-8'}</textarea>
     </div>
-    <div style="margin-left:60px;  margin-top:10px"> 
+    <div> 
         <label >Цена</label>
-        <input style="margin-left:124px; width:230px" type="text" maxlength="9"  value="{$showform_params.price|strip|escape:'htmlall':'utf-8'}" name="price" >                                                         
+        <input type="text" maxlength="9"  value="{$showform_params.price|strip|escape:'htmlall':'utf-8'}" name="price" >                                                         
     </div>
-    <div style="margin-left:221px;  margin-top:10px"> 
+    <div> 
         <input type="hidden" value="{$showform_params.return_id}" name="return_id" >
-        <input style="height:30px;font-weight: 700;color:white;border-radius: 3px;background: rgb(64,199,129);box-shadow: 0 -3px rgb(53,167,110) inset;transition: 0.2s;" type="submit" value="Отправить" name="main_form_submit"  > </div>
-    </div>
-    <div style="margin-left:60px;  margin-top:10px; height: 30px">
-        {$showform_params.notice_title_is_empty}
+        <input class="submit_button" type="submit" value="Отправить" name="main_form_submit"  > </div>
+    <div>
+        
+        <LABEL class='notice'>{$showform_params.notice_title_is_empty}</LABEL>
     </div>
 </form>
     
-  <table method="post" style="border: 1px solid black; margin-top:30px;margin-left: 80px">
-        <div >
+  <table>
            <tr>
                
                 <td> |  Название объявления </td>
@@ -82,8 +80,6 @@
                 <td>  |  Удалить | </td>
            </tr>
          </div> 
-         <div style="margin-left:111px;  margin-top:10px"> 
-         </div>
 {if $ads_container}
     {foreach from=$ads_container key=key item=arr}
 
@@ -96,3 +92,7 @@
            
     {/foreach}
 {/if}
+  </TABLE>
+   </body>
+</HTML>
+

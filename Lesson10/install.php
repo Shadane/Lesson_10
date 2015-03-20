@@ -12,9 +12,11 @@ require_once $project_root."/dbsimple/config.php";
 require_once $project_root."/dbsimple/DbSimple/Generic.php";
 
 require_once $project_root.'/FirePHPCore/FirePHP.class.php';
+
+require_once $project_root.'/dbsimple+firephp.inc.php';
+
 $firephp=firephp::getInstance(true);
 $firephp->setEnabled(true);
-require_once $project_root.'/dbsimple+firephp.inc.php';
 
     $contents='<?php '."\r\n".' '
             . '$config_arr = array('."\r\n".''

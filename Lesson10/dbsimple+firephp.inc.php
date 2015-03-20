@@ -30,7 +30,7 @@ function databaseErrorHandler($message, $info)
 //    $firephp->error($info);
 //    $firephp->groupend();
 
-    exit('OOPS! There is an error here! <a href="./install.php">Перейти на install</a>');
+    die('OOPS! There is an error here! <a href="./install.php">Перейти на install</a>');
 }
 
 function myLogger($db, $sql, $caller)
