@@ -1,0 +1,80 @@
+body {
+    font-family: Verdana, Geneva, Arial, sans-serif;
+    font-size: small;
+    width: 900px ;
+    margin-left: auto ;
+    margin-right: auto ;
+    padding: 20px;
+}
+/*-----basic elements section----*/
+form {width:450px;margin-left: auto ;
+    margin-right: auto ;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    }
+.notice{
+    margin-left: auto;
+    margin-right: auto;
+    
+ 
+    text-align: center;
+    /*position: relative;*/
+/*    left: 39%;*/
+
+}
+
+.notice label{
+    width: auto;
+    background: blue;
+    color: white;
+    border: 1px solid green;
+}
+input {
+    width: 55%;
+    /*position: relative;*/
+}
+
+div {padding-top: 10px;}
+
+label{
+    width: 42%;
+    display: inline-block;
+}
+select {width: 55%;}
+textarea{width:98.5%;height: 80px;}
+/*----end of basic elements section----*/
+
+/*----Checkbox section----*/
+.allow_mails label{width: 55%;margin-left: 44%;font-size: 70%;}
+.allow_mails input{width:auto;}
+
+
+/*----end of checkbox section----*/
+
+
+/*----Radiobuttons section-----*/
+div.radios{padding-left: 42%;}
+.radios label,.radios input{width:auto;}
+.radios label{margin-left: 5%;}
+/*div.radios{margin-left: 37%;}*/
+/*----end of Radiobuttons section*/
+
+
+/* ----Button section-----*/
+input.submit_button {
+     width: 20%;
+     height:30px;
+     font-weight: 700;
+     color:white;
+     border-radius: 3px;
+     background: rgb(64,199,129);
+     box-shadow: 0 -3px rgb(53,167,110) inset;
+     margin-right: 37% ;
+     margin-left: 43% ;
+}
+input.submit_button:hover {background: rgb(0,200,0);}
+input.submit_button:active {color: yellow;} 
+/*-------end of button section-----*/
