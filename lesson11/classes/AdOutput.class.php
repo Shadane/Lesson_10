@@ -1,5 +1,5 @@
 <?php
-class adOutput
+class AdOutput
 {
     private $ads;
     private $authors;
@@ -9,14 +9,12 @@ class adOutput
     private $notice;
 
 
-    public function __construct($ads, $authors, $adToReturn, $cities, $categories) 
+    public function __construct($args) 
     {
-        $this->adToReturn = $adToReturn;
-        $this->authors = $authors;
-        $this->ads = $ads;
-        $this->cities = $cities;
-        $this->categories = $categories;
+        static::set($args);
     }
+    
+    
     public function getAds()
     {
         return $this->ads;
@@ -52,9 +50,16 @@ class adOutput
         return $array;
     }
     
-    public function setNotice($notice)
+    public function set($args)
     {
-        $this->notice = $notice;
+        foreach($args as $nameOfArg=>$value)
+        {
+            if (property_exists('AdOutput', $nameOfArg))
+            {
+            $this->{$nameOfArg} = $value;
+            }
+        }
+       
     }
     public function getNotice() 
     {

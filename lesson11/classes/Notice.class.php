@@ -1,6 +1,6 @@
 <?php
 
-class notice
+class Notice
 {
     private $notice_field;
     function __construct(array $notice_field) 

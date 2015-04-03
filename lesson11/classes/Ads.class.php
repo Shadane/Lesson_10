@@ -1,5 +1,5 @@
 <?php
-class ads
+class Ads
 {
     protected $title;
     protected $price;

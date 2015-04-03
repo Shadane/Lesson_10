@@ -13,10 +13,11 @@ require_once $project_root."/dbsimple/DbSimple/Generic.php";
 
 require_once $project_root.'/FirePHPCore/FirePHP.class.php';
 
-require_once $project_root.'/dbsimple+firephp.inc.php';
+require_once $project_root.'/includes/dbsimple+firephp.inc.php';
 
-require_once $project_root.'/db.singleton.class.php';
-require_once $project_root.'/install.class.php';
+require $project_root.'/includes/Autoload.inc.php';
+
+
 
 $firephp=firephp::getInstance(true);
 $firephp->setEnabled(true);

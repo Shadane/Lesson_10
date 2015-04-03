@@ -1,6 +1,5 @@
 <?php
-require_once 'ads.class.php';
-class ad extends ads
+class Ad extends Ads
 {
     protected $private;
     protected $allow_mails;

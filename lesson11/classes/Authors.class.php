@@ -1,5 +1,5 @@
 <?php
-class authors
+class Authors
 {
     private $seller_name;
     private $email;
@@ -10,13 +10,15 @@ class authors
         $this->email = $data['email'];
     }
     
+    
     public function getMail(){
         return $this->email;
     }
-    
     public function getName(){
         return $this->seller_name;
     }
+    
+    
     
     public function setName($name)
     {

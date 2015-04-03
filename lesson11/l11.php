@@ -12,34 +12,30 @@ require_once $project_root."/dbsimple/DbSimple/Generic.php";
 
 require_once $project_root.'/FirePHPCore/FirePHP.class.php';
 
-require_once $project_root.'/dbsimple+firephp.inc.php';
-
-require_once $project_root.'/db.singleton.class.php';
-require_once $project_root.'/adrefactored.class.php';
-require_once $project_root.'/adOutput.class.php';
+require_once $project_root.'/includes/dbsimple+firephp.inc.php';
 
 
 
 require($project_root.'/smarty/libs/Smarty.class.php');
 
+require $project_root.'/includes/Autoload.inc.php';
+
 $firephp=firephp::getInstance(true);
 $firephp->setEnabled(true);
 /* Соединение устанавливается через класс-одиночку db_container 
- * и передается ссылкой объектам при их создании.
+ * и передается ссылкой объектам типа Store при их создании.
  */
-
-$adStore= new adStore;
+$adStore= new AdStore;
 $adStore->loadAll('ads');
 
-$auStore= new auStore;
+$auStore= new AuStore;
 $auStore->loadAll('authors');
 
-$cityStore= new cityStore;
+$cityStore= new CityStore;
 $cityStore->loadAll();
 
-$ctgsStore= new ctgsStore;
+$ctgsStore= new CtgsStore;
 $ctgsStore->loadAll();
-
 
    //button controolller 2
     if ( isset( $_POST['main_form_submit'] ) ) 
@@ -54,7 +50,7 @@ $ctgsStore->loadAll();
                */
               if ( $_POST['email'] && $_POST['seller_name'])
               {
-                $newAuthor = adAuthorFactory::buildOne('authors', $_POST);
+                $newAuthor = AdAuthorFactory::buildOne('authors', $_POST);
                 $author_id = $auStore->newSaveRequest($newAuthor);
               }
               /*
@@ -76,51 +72,38 @@ $ctgsStore->loadAll();
                * новое объявление
                */
               
-              $newAd = adAuthorFactory::buildOne('ad', $_POST);
+              $newAd = AdAuthorFactory::buildOne('ad', $_POST);
               $adStore->newSaveRequest($newAd );
-          }else{
-              $notice = adAuthorFactory::buildOne('notice', array('notice_field' => 'Введите обязательные поля (помечены звездочкой)'));
           }
-   }elseif ( isset($_GET['delentry']) && is_numeric($_GET['delentry']) ) {           //delete button
+          else
+          {
+              $adArgs['notice'] = AdAuthorFactory::buildOne('notice', array('notice_field' => 'Введите обязательные поля (помечены звездочкой)'));
+          }
+   }
+   elseif ( isset($_GET['delentry']) && is_numeric($_GET['delentry']) ) 
+   {           //delete button
              $adStore->delete($_GET['delentry']);
-   }elseif ( isset($_GET['formreturn'] ) && is_numeric($_GET['formreturn'] )) {   //достаточно ли is_numeric для предотвращения инъекций? или нужно прогнать еще через intval? Или лучше привести тип к int?
-             $adToReturn = $adStore->returnAd((int)$_GET['formreturn']);
-
-  
+   }
+   elseif ( isset($_GET['formreturn'] ) && is_numeric($_GET['formreturn'] )) 
+   {  
+             $adArgs['adToReturn'] = $adStore->returnAd((int)$_GET['formreturn']);
    }
    
-   /*
-    * если не возвращается никакое объявление, то создаем объект, который покажет пустые поля,
-    * 
-    */
-   
-$adToReturn = (isset($adToReturn))? $adToReturn : adAuthorFactory::buildOne('placeholder', array('return_id' => '',
-                                                                                                 'author_id' =>  '',
-                                                                                                 'private' =>  '0',
-                                                                                                 'allow_mails' =>  '0',
-                                                                                                 'phone' =>  '' ,
-                                                                                                 'location_id' =>  '' ,
-                                                                                                 'category_id' =>  '' ,
-                                                                                                 'title' =>  '',
-                                                                                                 'description' =>  '',
-                                                                                                 'price' =>  '0',
-                                                                                                 'seller_name' =>  '',
-                                                                                                 'email' =>  '')); 
+
 /*
- * не понимаю зачем нужен класс вывода ,
- * но я его сделал
+ * суперкласс, который знает все - немного настораживает.
+ * 
  */
+$adArgs['ads'] = $adStore->getStore();
+$adArgs['authors'] = $auStore->getStore();
+$adArgs['cities'] = $cityStore->getStore();
+$adArgs['categories'] = $ctgsStore->getStore();
 
-$adOutput = new adOutput($adStore->getStore(), $auStore->getStore(), $adToReturn, $cityStore->getStore(), $ctgsStore->getStore());
+$adOutput = new AdOutput($adArgs);
 $firephp->info($adOutput);
-
 /*
  * если есть notice, то он отобразится у нас в выводе
  */
-if (isset($notice))
-{
-    $adOutput->setNotice ($notice);
-}
 
 
 
@@ -137,6 +120,7 @@ $smarty->config_dir = $project_root.'/smarty/configs';
 
 $smarty->assign('radios',array('Частное лицо','Компания'));
 $smarty->assign('adToReturn', $adOutput->getAdToReturn());
+$smarty->assign('adOutput', $adOutput);
 $smarty->assign('cities',$adOutput->getCities() );
 $smarty->assign('categories',$adOutput->getCategories() );
 $smarty->assign('ads',$adOutput->getAds() );

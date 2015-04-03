@@ -1,13 +1,13 @@
 <?php
 
-class install {
+class Install {
 
     private $ads_db;
     
 
     function __construct($post) {
         self::saveToConfig($post);
-        $this->ads_db = db_container::getInstance();
+        $this->ads_db = DBsingleton::getInstance();
         
     }
     function saveToConfig($post){

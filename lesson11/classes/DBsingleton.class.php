@@ -1,5 +1,5 @@
 <?php 
-class db_container{
+class DBsingleton{
     protected $ads_db;
        /**
      * Статическая переменная, в которой мы
@@ -17,7 +17,8 @@ class db_container{
     return $config_arr;
     }
 
-
+    
+    
     private function __construct(){
 
         $config_arr = $this->config();

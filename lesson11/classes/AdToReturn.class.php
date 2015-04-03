@@ -1,6 +1,5 @@
 <?php
-require_once 'ad.class.php';
-class adAuthorMix extends ad
+class AdToReturn extends Ad
 {
     private $seller_name;
     private $email;
@@ -12,13 +11,23 @@ class adAuthorMix extends ad
         $this->allow_mails =$postData['allow_mails'];
     }
     
-    public function getName()
+    private function getSeller_name()
     {
         return $this->seller_name;
     }
-    public function getMail() 
+    public function getEmail() 
     {
         return $this->email;
+    }
+    /*
+     * функция для вывода через смарти.
+     */
+    public function __get($name) {
+        if (property_exists($this, $name))
+        {
+            $method = 'get'.$name;
+            return $this->{$method}();            
+        }
     }
 }
 
