@@ -38,17 +38,17 @@ $ctgsStore= new CtgsStore;
 $ctgsStore->loadAll();
 
    //button controolller 2
-    if ( isset( $_POST['main_form_submit'] ) ) 
+     if ( isset( $_POST['main_form_submit'] ) ) 
     {    //send button
        
-          if ( $_POST['title'] &&(( $_POST['email'] && $_POST['seller_name'])||($_POST['saved_email'])) ){//если есть (название и (имя+мыло или указано сохраненное)
-          
+           if ( $_POST['title'] &&(( $_POST['email'] && $_POST['seller_name'])||($_POST['saved_email'])) )//если есть (название и (имя+мыло или указано сохраненное)
+          {
               /*
                * если указано мыло и имя в полях ввода, то 
                * добавляем нового автора\обновляем 
                * существующего
                */
-              if ( $_POST['email'] && $_POST['seller_name'])
+               if ( $_POST['email'] && $_POST['seller_name'])
               {
                 $newAuthor = AdAuthorFactory::buildOne('authors', $_POST);
                 $author_id = $auStore->newSaveRequest($newAuthor);
@@ -57,7 +57,7 @@ $ctgsStore->loadAll();
                * В противном случае смотрим указан ли 
                * пользователь из списка
                */
-              elseif ($_POST['saved_email'])
+               elseif ($_POST['saved_email'])
               {
                   $author_id = $_POST['saved_email'];
               }
@@ -75,16 +75,16 @@ $ctgsStore->loadAll();
               $newAd = AdAuthorFactory::buildOne('ad', $_POST);
               $adStore->newSaveRequest($newAd );
           }
-          else
+           else
           {
               $adArgs['notice'] = AdAuthorFactory::buildOne('notice', array('notice_field' => 'Введите обязательные поля (помечены звездочкой)'));
           }
    }
-   elseif ( isset($_GET['delentry']) && is_numeric($_GET['delentry']) ) 
+    elseif ( isset($_GET['delentry']) && is_numeric($_GET['delentry']) ) 
    {           //delete button
              $adStore->delete($_GET['delentry']);
    }
-   elseif ( isset($_GET['formreturn'] ) && is_numeric($_GET['formreturn'] )) 
+    elseif ( isset($_GET['formreturn'] ) && is_numeric($_GET['formreturn'] )) 
    {  
              $adArgs['adToReturn'] = $adStore->returnAd((int)$_GET['formreturn']);
    }
@@ -120,7 +120,6 @@ $smarty->config_dir = $project_root.'/smarty/configs';
 
 $smarty->assign('radios',array('Частное лицо','Компания'));
 $smarty->assign('adToReturn', $adOutput->getAdToReturn());
-$smarty->assign('adOutput', $adOutput);
 $smarty->assign('cities',$adOutput->getCities() );
 $smarty->assign('categories',$adOutput->getCategories() );
 $smarty->assign('ads',$adOutput->getAds() );

@@ -1,11 +1,11 @@
 <?php
-class Ads
+ class Ads
 {
     protected $title;
     protected $price;
     protected $author_id;
     
-    public function __construct(array $data) 
+     public function __construct(array $data) 
     {
         $this->price       =   $data['price'];
         $this->author_id   =   $data['author_id'];
@@ -13,17 +13,17 @@ class Ads
 
     }
     
-        public function getTitle()
+     public function getTitle()
     {
         return $this->title;
     }
-        public function getPrice()
+     public function getPrice()
     {
-        return $this->price;
+         return $this->price;
     }
-        public function getAuthor_id()
+     public function getAuthor_id()
     {
-        return $this->author_id;
+         return $this->author_id;
     }
     
 

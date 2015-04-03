@@ -2,14 +2,14 @@
 /*
  * класс для работы с авторами
  */
-class AuStore extends Store
+ class AuStore extends Store
 {
     /*
      * загружает поля с объявлеиями из базы и отдает их
      * parent:loadAll на фабрику создания авторов, затем кладет 
      * созданные объекты-авторы себе на склад.
      */
-    public function loadAll($class) 
+     public function loadAll($class) 
     {
         $fields = $this->ads_db->select('SELECT '
                                        .'id as ARRAY_KEY, seller_name, email '
@@ -18,7 +18,7 @@ class AuStore extends Store
         
     }
     
-    public function newSaveRequest(authors $author)
+     public function newSaveRequest(authors $author)
     {
         /*
          * сюда у нас поступает свежеиспеченный автор
@@ -40,7 +40,7 @@ class AuStore extends Store
      * у нас возвращается ноль, поэтому далее стоит условие: если author_id ==0,
      * то мы загружаем ID из обновленного автора.
      */
-    private function save(authors $author) 
+     private function save(authors $author) 
     {   
             $authorName = $author->getName();
             $authorMail = $author->getMail();
@@ -52,10 +52,13 @@ class AuStore extends Store
                                              .'`seller_name`=?' 
                                              ,$authorName,$authorMail,$authorName);
                                     
-            if ( $author_id == 0) $author_id = $this->ads_db->selectcell('SELECT id '
+             if ( $author_id == 0)
+            {
+                $author_id = $this->ads_db->selectcell('SELECT id '
                                                    . 'from `ads_authors` '
                                                    . 'WHERE `email`=?',
                                                      $authorMail);
+            }
             return $author_id;
     }
     

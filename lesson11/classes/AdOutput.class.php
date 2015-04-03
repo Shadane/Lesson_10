@@ -1,5 +1,5 @@
 <?php
-class AdOutput
+ class AdOutput
 {
     private $ads;
     private $authors;
@@ -9,40 +9,42 @@ class AdOutput
     private $notice;
 
 
-    public function __construct($args) 
+     public function __construct($args) 
     {
         static::set($args);
     }
     
     
-    public function getAds()
+     public function getAds()
     {
         return $this->ads;
     }
-    public function getAuthors()
+     public function getAuthors()
     {
         return $this->authors;
     }
-    public function getAdToReturn()
+     public function getAdToReturn()
     {
         return $this->adToReturn;
     }
-    public function getCities()
+     public function getCities()
     {
         return $this->cities;
     }
-    public function getCategories()
+     public function getCategories()
     {
         return $this->categories;
     }
-        public function getAsCheckbox()
+    
+    
+     public function getAsCheckbox()
     {/*
      * эта функция нужна для вывода в формате {html options}
      */
-            if ( ! $this->authors) return NULL;
-        foreach ($this->authors as $key => $obj)
+        if ( ! $this->authors) return NULL;
+         foreach ($this->authors as $key => $obj)
         {
-            if (!$key==0)
+             if (!$key==0)
             {
                 $array[$key]='Имя:   '.$obj->getName().'   Почта: '.$obj->getMail();
             }
@@ -50,18 +52,18 @@ class AdOutput
         return $array;
     }
     
-    public function set($args)
+     public function set($args)
     {
-        foreach($args as $nameOfArg=>$value)
+         foreach($args as $nameOfArg=>$value)
         {
-            if (property_exists('AdOutput', $nameOfArg))
+             if (property_exists('AdOutput', $nameOfArg))
             {
-            $this->{$nameOfArg} = $value;
+                $this->{$nameOfArg} = $value;
             }
         }
        
     }
-    public function getNotice() 
+     public function getNotice() 
     {
         return $this->notice;
     }

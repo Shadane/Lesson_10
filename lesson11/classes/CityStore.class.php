@@ -4,7 +4,7 @@
  */
  class CityStore extends Store
 {
-    public function loadAll()
+     public function loadAll()
     {
         $this->store = $this->ads_db->selectcol('SELECT '
                                                .'city_id as ARRAY_KEY, city_name '

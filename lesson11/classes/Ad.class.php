@@ -1,5 +1,5 @@
 <?php
-class Ad extends Ads
+ class Ad extends Ads
 {
     protected $private;
     protected $allow_mails;
@@ -9,7 +9,7 @@ class Ad extends Ads
     protected $description;
     protected $return_id;
     
-    public function __construct($postData) 
+     public function __construct($postData) 
     {
         parent::__construct($postData);
 
@@ -22,36 +22,37 @@ class Ad extends Ads
         $this->return_id   =   $postData['return_id'];
     }
     
-        public function getReturn_id()
+     public function getReturn_id()
     {
-        return $this->return_id;
+     return $this->return_id;
     }
-        public function getPrivate()
+     public function getPrivate()
     {
-        return $this->private;
+     return $this->private;
     }
-        public function getAllow_mails()
+     public function getAllow_mails()
     {
-        return $this->allow_mails;
+     return $this->allow_mails;
     }
-        public function getPhone()
+     public function getPhone()
     {
-        return $this->phone;
+     return $this->phone;
     }
-        public function getLocation_id()
+     public function getLocation_id()
     {
-        return $this->location_id;
+     return $this->location_id;
     }
-        public function getCategory_id()
+     public function getCategory_id()
     {
-        return $this->category_id;
+     return $this->category_id;
     }
-        public function getDescription()
+     public function getDescription()
     {
-        return $this->description;
+     return $this->description;
     }
     
-    public function getAsArray()
+    
+     public function getAsArray()
     {
         $adAsArray = get_object_vars($this);
         unset($adAsArray['return_id']);
