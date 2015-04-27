@@ -1,3 +1,4 @@
+$(function(){
 $('a.delete').click(function(){
                               var id = $(this).attr('id');
                               var tr = $(this).closest('tr');
@@ -9,5 +10,6 @@ $('a.delete').click(function(){
   
   $('div#container').load('buttonLogic.php?delentry='+id,deleteSuccess);
   });
+});
 
 

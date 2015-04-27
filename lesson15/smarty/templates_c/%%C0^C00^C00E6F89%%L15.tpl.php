@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.28, created on 2015-04-27 12:18:31
+<?php /* Smarty version 2.6.28, created on 2015-04-27 16:08:24
          compiled from L15.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'L15.tpl', 35, false),array('function', 'html_options', 'L15.tpl', 57, false),array('function', 'html_checkboxes', 'L15.tpl', 65, false),array('modifier', 'default', 'L15.tpl', 35, false),array('modifier', 'strip', 'L15.tpl', 42, false),array('modifier', 'escape', 'L15.tpl', 42, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'L15.tpl', 34, false),array('function', 'html_options', 'L15.tpl', 56, false),array('function', 'html_checkboxes', 'L15.tpl', 64, false),array('modifier', 'default', 'L15.tpl', 34, false),array('modifier', 'strip', 'L15.tpl', 41, false),array('modifier', 'escape', 'L15.tpl', 41, false),)), $this); ?>
 <!DOCTYPE HTML>
 <HTML>
    <HEAD>
@@ -18,7 +18,6 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
       <script src="./javascript/ads.js"></script>
-      
    </HEAD>
    <body>
        
@@ -199,6 +198,6 @@ $</td>
    </TBODY>
   </TABLE>
    </div>
-      <script src="./javascript/ads.js"></script>
+      
    </body>
 </HTML>
