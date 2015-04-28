@@ -2,9 +2,10 @@
 require_once 'init.php';
 
 
-$storeCarrier = new StoreCarrier(new Adstore, new AuStore, new CityStore, new CtgsStore);
+$adStore = new AdStore();
+$adStore->loadAll('ads');
 
 if ( isset($_GET['delentry']) && is_numeric($_GET['delentry']) ) 
    {           //delete button
-             $storeCarrier->getAdStore()->delete($_GET['delentry']);
+             $adStore->delete($_GET['delentry']);
    }
