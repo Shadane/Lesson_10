@@ -17,12 +17,13 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>*}
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
       <script src="./javascript/ads.js"></script>
+      
    </HEAD>
    <body>
        
        
        
-       <div id="container"></div>
+       
        
 <form class="form-horizontal" method="post">
  <div class="container col-lg-5 col-md-8 col-sm-8 col-lg-offset-3 col-md-offset-1 col-sm-offset-1"> 
@@ -121,7 +122,9 @@
     <div class="form-group"> 
         <input type="hidden" value="{$adToReturn->id}" name="id" >
         <div class="col-sm-offset-5 col-sm-7">
-            <input class="submit_button btn btn-success btn-large"" type="submit" value="Отправить" name="main_form_submit"  > </DIV></div>
+            <input class="submit_button btn btn-success btn-large"" type="submit" value="Отправить" name="main_form_submit"  > </DIV>
+            <div id="adsContainer"></div>
+    </div>
             
     <div class="form-group">
     <div class='notice'>
@@ -176,6 +179,5 @@
    </TBODY>
   </TABLE>
    </div>
-      
    </body>
 </HTML>
