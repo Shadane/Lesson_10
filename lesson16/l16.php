@@ -29,7 +29,5 @@ $smarty->assign('radios',array('Частное лицо','Компания'));
 $smarty->assign('cities',$storeCarrier->getCityStore()->getStore());
 $smarty->assign('categories',$storeCarrier->getCtgsStore()->getStore() );
 
-$smarty->assign('checkboxAuthors',$storeCarrier->getAuthorsAsCheckbox() );
-
 
 $smarty->display('L16.tpl');

@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.28, created on 2015-04-29 15:01:56
+<?php /* Smarty version 2.6.28, created on 2015-04-29 19:14:35
          compiled from L16.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'L16.tpl', 36, false),array('function', 'html_options', 'L16.tpl', 58, false),array('function', 'html_checkboxes', 'L16.tpl', 66, false),array('modifier', 'default', 'L16.tpl', 36, false),array('modifier', 'strip', 'L16.tpl', 43, false),array('modifier', 'escape', 'L16.tpl', 43, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios', 'L16.tpl', 36, false),array('function', 'html_checkboxes', 'L16.tpl', 59, false),array('function', 'html_options', 'L16.tpl', 77, false),array('modifier', 'default', 'L16.tpl', 36, false),array('modifier', 'strip', 'L16.tpl', 43, false),array('modifier', 'escape', 'L16.tpl', 43, false),)), $this); ?>
 <!DOCTYPE HTML>
 <HTML>
    <HEAD>
@@ -54,16 +54,8 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'html_radios
         </div>
     </DIV>
         
-    <div class="form-group">
-            <LABEL class="col-sm-5 control-label" for="authors">Список Авторов&nbsp;<a href="?" title="Можете оставить поля 'Имя' и 'Электронная почта' пустыми и выбрать их из существующих">?</A></LABEL>
-             <div class="col-sm-7">
-            <select id="authors" class="form-control input-sm" title="список авторов" name="saved_email"> 
-                 <option value="0">&nbsp;</option>
-                  <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['checkboxAuthors'],'selected' => $this->_tpl_vars['adToReturn']->author_id), $this);?>
+        <div class="acceptable form-group" style="height: 30px"></div>
  
-            </select>
-             </div>
-    </div>  
     
      <div class="form-group">
         <div class="checkbox">

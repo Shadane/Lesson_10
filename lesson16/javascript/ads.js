@@ -1,3 +1,7 @@
+        /*
+         * объявляем функцию подгрузки динамического контента на страницу(таблицы)
+         */
+
 function loadAdsTable() {
     $('div.container_ads').load('adsTable.php');
 }
@@ -5,7 +9,9 @@ function loadAdsTable() {
 
 
 $(function () {
-    
+            /*
+             * объявляем функцию резета формы
+             */
     $.fn.clearForm = function () {
         return this.each(function () {
             var type = this.type, tag = this.tagName.toLowerCase();
@@ -21,10 +27,17 @@ $(function () {
                  $('input#inlineRadio1').prop('checked', false).filter('[value=0]').prop('checked', true);
         });
     };
+    
+            /*
+             * очищаем форму и подгружаем таблицу
+             */
 $('form#adsform').clearForm();
 
     loadAdsTable();
 
+        /* 
+         * выставляем настройки аякса
+         */
 
     $.ajaxSetup({
         timeout: 5000,
@@ -35,7 +48,9 @@ $('form#adsform').clearForm();
     
 
 
-
+/* 
+ * при нажатии на Отправить
+ */
 
     $('form#adsform').submit(function () {
         var form = $('#adsform').serialize();

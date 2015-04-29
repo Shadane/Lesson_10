@@ -1,5 +1,21 @@
  <script src="./javascript/table.js"></script> 
+ 
+ 
+ 
+ 
+<div class="replacable" style="display: none">
+            <LABEL class="col-sm-5 control-label" for="authors">Список Авторов&nbsp;<a href="?" title="Можете оставить поля 'Имя' и 'Электронная почта' пустыми и выбрать их из существующих">?</A></LABEL>
+             <div class="col-sm-7">
+            <select id="authors" class="form-control input-sm" title="список авторов" name="saved_email"> 
+                 <option value="0">&nbsp;</option>
+                  {html_options options=$checkboxAuthors} 
+            </select>
+             </div>
+     </div> 
 
+       
+ 
+ 
   <table class="table table-hover">
       <h2 class="sub-header text-center">Все объявления</h2>
       <THEAD>

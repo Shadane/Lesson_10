@@ -16,7 +16,7 @@ $smarty->compile_dir = $project_root.'/smarty/templates_c';
 $smarty->cache_dir = $project_root.'/smarty/cache';
 $smarty->config_dir = $project_root.'/smarty/configs';
 
-
+$smarty->assign('checkboxAuthors',$storeCarrier->getAuthorsAsCheckbox() );
 $smarty->assign('ads',$storeCarrier->getAdStore()->getStore() );
 $smarty->assign('authors',$storeCarrier->getAuStore()->getStore() );
 

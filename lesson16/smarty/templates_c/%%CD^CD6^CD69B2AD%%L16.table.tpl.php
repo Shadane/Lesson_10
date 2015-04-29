@@ -1,9 +1,26 @@
-<?php /* Smarty version 2.6.28, created on 2015-04-29 15:18:23
+<?php /* Smarty version 2.6.28, created on 2015-04-29 19:12:15
          compiled from L16.table.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'escape', 'L16.table.tpl', 28, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'html_options', 'L16.table.tpl', 11, false),array('modifier', 'escape', 'L16.table.tpl', 44, false),)), $this); ?>
  <script src="./javascript/table.js"></script> 
+ 
+ 
+ 
+ 
+<div class="replacable" style="display: none">
+            <LABEL class="col-sm-5 control-label" for="authors">Список Авторов&nbsp;<a href="?" title="Можете оставить поля 'Имя' и 'Электронная почта' пустыми и выбрать их из существующих">?</A></LABEL>
+             <div class="col-sm-7">
+            <select id="authors" class="form-control input-sm" title="список авторов" name="saved_email"> 
+                 <option value="0">&nbsp;</option>
+                  <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['checkboxAuthors']), $this);?>
+ 
+            </select>
+             </div>
+     </div> 
 
+       
+ 
+ 
   <table class="table table-hover">
       <h2 class="sub-header text-center">Все объявления</h2>
       <THEAD>
