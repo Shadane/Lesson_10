@@ -18,6 +18,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
      
       <script src="./javascript/ads.js"></script>
+
       
    </HEAD>
    <body>
@@ -40,17 +41,30 @@
     <div class="form-group">
         <label for="seller_name" class="col-sm-5 control-label">Ваше имя *</label>
             <div class="col-sm-7">
-            <input  type="text" class="form-control input-sm" id="seller_name" maxlength="20" value="{$auToReturn->seller_name|strip|escape:'htmlall':'utf-8'}" name="seller_name">
+            <input  type="text" class="requiredName form-control input-sm" id="seller_name" maxlength="20" value="{$auToReturn->seller_name|strip|escape:'htmlall':'utf-8'}" name="seller_name">
             </DIV>
     </div>
     <div class="form-group"> 
         <label class="col-sm-5 control-label" for="email">Электронная почта *</label>
         <div class="col-sm-7">
-        <input class="form-control input-sm" id="email" type="email" maxlength="50" value="{$auToReturn->email|strip|escape:'htmlall':'utf-8'}" name="email">
+        <input class="requiredEmail form-control input-sm" id="email" type="email" maxlength="50" value="{$auToReturn->email|strip|escape:'htmlall':'utf-8'}" name="email">
         </div>
     </DIV>
         
-        <div class="acceptable form-group" style="height: 30px"></div>
+        <div class="acceptable form-group" style="height: 30px">
+
+            <LABEL class="col-sm-5 control-label" for="authors">Список Авторов&nbsp;<a href="?" title="Можете оставить поля 'Имя' и 'Электронная почта' пустыми и выбрать их из существующих">?</A></LABEL>
+             <div class="col-sm-7">
+            <select id="authors" class="requiredAuthor form-control input-sm" title="список авторов" name="saved_email"> 
+                 <option class="static" value="0">&nbsp;</option>
+                 <option class="static" value="0">&nbsp;</option>
+                 <option class="static" value="0">&nbsp;</option>
+                 <option class="static" value="0">&nbsp;</option>
+                  
+            </select>
+             </div>
+
+        </div>
  
     
      <div class="form-group">
@@ -90,9 +104,9 @@
     </div>
             
     <div class="form-group">
-        <label class="col-sm-5 control-label" for="title">Название объявления *</label> 
+        <label class=" col-sm-5 control-label" for="title">Название объявления *</label> 
            <div class="col-sm-7">
-        <input class="form-control input-sm" id="title" type="text" maxlength="30" value="{$adToReturn->title|strip|escape:'htmlall':'utf-8'}" name="title">
+        <input class="requiredTitle form-control input-sm" id="title" type="text" maxlength="30" value="{$adToReturn->title|strip|escape:'htmlall':'utf-8'}" name="title">
            </div>
     </div>
            
@@ -144,6 +158,8 @@
         
 </div>
     </div>
+    
+    
     
     
 

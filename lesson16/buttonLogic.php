@@ -1,8 +1,9 @@
 <?php
+
 require_once 'init.php';
+require($project_root.'/smarty/libs/Smarty.class.php');
 
-$storeCarrier = new StoreCarrier(new Adstore, new AuStore, new CityStore, new CtgsStore);
-
+$storeCarrier = new StoreCarrier(new Adstore, new AuStore, NULL, NULL);
 
 if ( isset( $_POST['private'] ) ) 
     {    //send button
@@ -38,19 +39,18 @@ if ( isset( $_POST['private'] ) )
                * новое объявление
                */
               $newAd = AdAuthorFactory::buildOne('ad', $_POST);
-              $response = $storeCarrier->getAdStore()->newSaveRequest($newAd );
-              echo json_encode($response);
+              $response['submit'] = $storeCarrier->getAdStore()->newSaveRequest($newAd );
+
           }
            else
           {
               $storeCarrier->setNotice(AdAuthorFactory::buildOne('notice', array('notice_field' => 'Введите обязательные поля (помечены звездочкой)')));
-              echo json_encode($storeCarrier->getNotice()->getNotice());
+              $response['notice'] = $storeCarrier->getNotice()->getNotice();
           }
    }
     elseif ( isset($_GET['delentry']) && is_numeric($_GET['delentry']) ) 
    {           //delete button
-             $response = $storeCarrier->getAdStore()->delete($_GET['delentry']);
-             echo json_encode($response);
+             $response['delete'] = $storeCarrier->getAdStore()->delete($_GET['delentry']);
    }
    
     elseif ( isset($_GET['formreturn'] ) && is_numeric($_GET['formreturn'] )) 
@@ -60,11 +60,30 @@ if ( isset( $_POST['private'] ) )
             {
                  $fieldsForAd['seller_name']= $storeCarrier->getAuStore()->returnOne($fieldsForAd['author_id'])->getSeller_name();
                  $fieldsForAd['email']= $storeCarrier->getAuStore()->returnOne($fieldsForAd['author_id'])->getEmail();
-//             $storeCarrier->setAuToReturn($storeCarrier->getAuStore()->returnOne($fieldsForAd['author_id']));            
-//             $storeCarrier->setAdToReturn(adAuthorFactory::buildOne('ad', $fieldsForAd));
-                 echo $me=json_encode($fieldsForAd);
+
+                 $response['edit'] = $fieldsForAd;
              
             }
    }
-   
-  
+
+$smarty = new Smarty();
+
+$smarty->compile_check = true;
+$smarty->debugging = false;
+
+$smarty->template_dir = $project_root.'/smarty/templates';
+$smarty->compile_dir = $project_root.'/smarty/templates_c';
+$smarty->cache_dir = $project_root.'/smarty/cache';
+$smarty->config_dir = $project_root.'/smarty/configs';
+
+$smarty->assign('checkboxAuthors',$storeCarrier->getAuthorsAsCheckbox() );
+$smarty->assign('ads',$storeCarrier->getAdStore()->getStore() );
+$smarty->assign('authors',$storeCarrier->getAuStore()->getStore() );
+
+ if (!isset($_POST['delentry'])&&!isset($_GET['formreturn']))
+{
+    $response['smarty'] = $smarty->fetch('L16.table.tpl');
+}
+
+echo json_encode($response);
+

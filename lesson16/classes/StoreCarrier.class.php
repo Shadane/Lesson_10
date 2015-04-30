@@ -11,21 +11,29 @@
      
       public function __construct($adStore, $auStore, $cityStore, $ctgsStore) 
      {
-         if (! $adStore instanceof AdStore) die('wrong instance of adStore is given');
-         $this->adStore= $adStore;
-         $this->adStore->loadAll('ads');
+          if ( $adStore instanceof AdStore)
+         {
+             $this->adStore = $adStore;
+             $this->adStore->loadAll('ads');
+         }
          
-         if (! $auStore instanceof AuStore) die('wrong instance of auStore is given');
-         $this->auStore= $auStore;
-         $this->auStore->loadAll('authors');
+          if ( $auStore instanceof AuStore)
+         {
+             $this->auStore = $auStore;
+             $this->auStore->loadAll('authors');
+         }
          
-         if (! $cityStore instanceof CityStore) die('wrong instance of cityStore is given');
-         $this->cityStore= $cityStore;
-         $this->cityStore->loadAll();
+          if ( $cityStore instanceof CityStore)
+         {
+             $this->cityStore = $cityStore;
+             $this->cityStore->loadAll();
+         }
          
-         if (! $ctgsStore instanceof CtgsStore) die('wrong instance of adStore is given');
-         $this->ctgsStore= $ctgsStore;
-         $this->ctgsStore->loadAll();
+          if ( $ctgsStore instanceof CtgsStore)
+         {
+             $this->ctgsStore = $ctgsStore;
+             $this->ctgsStore->loadAll();
+         }
      }
      
       public function getAdStore()

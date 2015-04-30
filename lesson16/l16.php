@@ -6,7 +6,7 @@ require($project_root.'/smarty/libs/Smarty.class.php');
  * и передается ссылкой объектам типа Store при их создании.
  */
 
-$storeCarrier = new StoreCarrier(new Adstore, new AuStore, new CityStore, new CtgsStore);
+$storeCarrier = new StoreCarrier(NULL, NULL, new CityStore, new CtgsStore);
 
 
 $firephp->info($storeCarrier);
